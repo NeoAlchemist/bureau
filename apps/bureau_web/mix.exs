@@ -43,7 +43,7 @@ defmodule BureauWeb.MixProject do
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
-      {:guardian, "~> 1.0"},
+      {:guardian, "~> 1.2"},
       {:cors_plug, "~> 1.2"},
       {:bureau, in_umbrella: true},
       {:jason, "~> 1.0"},

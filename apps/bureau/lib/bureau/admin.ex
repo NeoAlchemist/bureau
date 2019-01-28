@@ -3,8 +3,8 @@ defmodule Bureau.Admin do
   This module keep all logic e state of admin dashboard
   """
   defmodule Account do
-    defstruct username: Application.get_env(:bureau, :admin)[:username],
-              password: Application.get_env(:bureau, :admin)[:password]
+    defstruct username: nil,
+              password: nil
 
     @opaque t() :: %__MODULE__{
               username: String.t(),
@@ -16,7 +16,11 @@ defmodule Bureau.Admin do
   alias Bureau.Account.Encryption, as: Encrypt
 
   def authorized(%{"username" => username, "password" => password}) do
-    admin = %Account{}
+    admin = 
+      %Account{
+        username: Application.get_env(:bureau, :admin)[:username],
+        password: Application.get_env(:bureau, :admin)[:password]
+    }
 
     with true <- username == admin.username,
          true <- Encrypt.validate(password, admin.password) do
