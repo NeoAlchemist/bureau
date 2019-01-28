@@ -1,0 +1,77 @@
+<section>
+   <div class="siimple-form">
+    <%= form_for @changeset, @action, [method: :get], fn f -> %>
+
+      <div class="siimple-form-field siimple--display-inline-flex">
+        <%= label f, :country, class: "siimple-label" %>
+        <%= select f, :country, ["","Afghanistan","Albania","Algeria","Andorra","Angola","Antigua & Deps","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Central African Rep","Chad","Chile","China","Colombia","Comoros","Congo","Congo (Democratic Rep)","Costa Rica","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","East Timor","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland (Republic)","Israel","Italy","Ivory Coast","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Korea North","Korea South","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar, (Burma)","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palau","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russian Federation","Rwanda","St Kitts & Nevis","St Lucia","Saint Vincent & the Grenadines","Samoa","San Marino","Sao Tome & Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"], class: "siimple-select" %>
+        <%= error_tag f, :country %>
+      </div>
+
+      <div class="siimple-form-field siimple--display-inline-flex">
+        <%= label f, :order, class: "siimple-label" %>
+        <%= select f, :order, ["Ascending", "Descending"], class: "siimple-select" %>
+        <%= error_tag f, :order %>
+      </div>
+
+      <div class="siimple-form-field siimple--display-inline-flex">
+        <%= label f, :remote, class: "siimple-label" %>
+        <%= checkbox f, :remote, class: "siimple-checkbox siimple-checkbox--success" %>
+      </div>
+
+      <div class="siimple-form-field siimple--display-inline-flex">
+        <%= label f, :urgent, class: "siimple-label" %>
+        <%= checkbox f, :urgent, class: "siimple-checkbox siimple-checkbox--success" %>
+      </div>
+
+      <div class="siimple-form-field siimple--display-inline-flex">
+        <%= submit "Search", class: "siimple-btn siimple-btn--primary" %>
+      </div>
+    
+    </div>
+
+    <%= for job <- @jobs do %>
+    <div class="siimple-card">
+      <div class="siimple-card-body">
+      <div class="siimple-card-title"><%= job.company_name %></div>
+      <div class="siimple-card-subtitle"><%= job.position %></div>
+      <%= if job.verified do %>
+        <span class="siimple-tag siimple-tag--success siimple-tag--rounded">
+            Verified
+        </span>
+      <% end %>
+      <%= if job.remote do %>
+        <span class="siimple-tag siimple-tag--primary siimple-tag--rounded">
+            Remote
+        </span>
+      <% end %>
+      <%= if job.urgent do %>
+        <span class="siimple-tag siimple-tag--warning siimple-tag--rounded">
+            Urgent
+        </span>
+      <% end %>
+      <%= if job.close do %>
+        <span class="siimple-tag siimple-tag--error siimple-tag--rounded">
+            Closed
+        </span>
+      <% end %>
+      <p class="siimple-p"><%= String.slice(job.description, 0..150) <> ".. " %>
+      <%= link("read more", class: "siimple-navbar-item", to: "/jobs/#{job.id}", method: :get) %>
+      </p>
+      </div>
+    </div>
+    <% end %>
+
+    <div class="siimple--clearfix">
+    <%= if @page_number > 1 do %>
+    <div class="siimple--float-left"><%= submit "PREVIOUS", [class: "siimple-btn siimple-btn--primary siimple-btn--small", name: :page, value: (@page_number-1), method: :get] %></div>
+    <% end %>
+    <%= if @total_pages > 1 do %>
+    <div class="siimple--text-center">page: <%= @page_number %></div>
+    <% end %>
+    <%= if @page_number < @total_pages do %>
+    <div class="siimple--float-right"><%= submit "NEXT", [class: "siimple-btn siimple-btn--primary siimple-btn--small", name: :page, value: (@page_number+1), method: :get] %></div>
+    <% end %>
+    </div>
+  <% end %>
+</section>

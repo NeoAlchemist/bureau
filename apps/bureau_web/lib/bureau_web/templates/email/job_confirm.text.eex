@@ -1,0 +1,6 @@
+Welcome to <%= site_url() %>
+
+We're ready to publish your job offer. All we need to do is
+make sure this is your email address.
+
+<%= @email.link %>

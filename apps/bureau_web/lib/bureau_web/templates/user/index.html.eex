@@ -1,0 +1,38 @@
+<section>
+  <div class="siimple-content">
+  
+    <div class="siimple-form" style="max-width: 400px;">
+
+    <%= form_for @conn, Routes.user_path(@conn, :index), [as: :search, method: :get], fn f -> %>
+      <div class="siimple-form-field siimple--display-inline-flex">
+        <%= label f, "Search: ", class: "siimple-label" %>
+        <%= text_input f, :username, class: "siimple-input siimple-input--fluid", placeholder: "username" %></li>
+      </div>
+
+      <div class="siimple-form-field siimple--display-inline-flex">
+        <%= submit "Find", class: "siimple-btn siimple-btn--primary" %>
+      </div>
+    
+    </div>
+    <div class="siimple-table">
+    <div class="siimple-table-header">
+        <div class="siimple-table-row">
+            <div class="siimple-table-cell">Username</div>
+            <div class="siimple-table-cell">Spell</div>
+            <div class="siimple-table-cell">Github</div>
+        </div>
+    </div>
+    <div class="siimple-table-body">
+        <div class="siimple-table-row">
+    <%= for user <- @users do %>
+      <div class="siimple-table-cell"><%= link(user.username, class: "siimple-navbar-item", to: "/alchemists/#{String.replace(user.username, " ", "_")}", method: :get) %></div>
+      <div class="siimple-table-cell"><%= user.spell %></div>  
+      <div class="siimple-table-cell"><%= user.github_url %></div>  
+    <% end %>
+        </div>
+        </div>
+    </div>
+
+    <% end %>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+<div class="siimple-content" align="center">
+  <div class="siimple-form" style="max-width: 400px;">
+    <div class="siimple-form-title">Sign In</div>
+    <%= form_for @changeset, @action, fn f -> %>
+
+      <div class="siimple-form-field">
+        <%= label f, :email, class: "siimple-form-field-label siimple--float-left" %>
+        <%= email_input f, :email, class: "siimple-input  siimple-input--fluid", placeholder: "email" %>
+        <%= error_tag f, :email %>
+      </div>
+
+      <div class="siimple-form-field" >
+        <%= label f, :password, class: "siimple-form-field-label siimple--float-left" %>
+        <%= password_input f, :password, class: "siimple-input  siimple-input--fluid", placeholder: "password" %>
+        <%= error_tag f, :password %>
+        <%= link "Forgot your password?", to: Routes.session_path(@conn, :password), method: :get, class: "siimple-link siimple--float-left" %>
+      </div>
+
+      <div class="siimple-form-field" style="padding-top: 10px;">
+        <%= submit "Login", class: "siimple-btn siimple-btn--primary", style: "width: 150px;" %>
+      </div>
+    <% end %>
+  </div>
+</div>

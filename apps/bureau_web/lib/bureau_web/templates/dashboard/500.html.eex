@@ -1,0 +1,10 @@
+<div id="notfound">
+    <div class="notfound">
+        <div class="notfound-404">
+            <h1>500</h1>
+        </div>
+        <h2>Oops! Something goes wrong</h2>
+        <p>Sorry we are trying hard to contact higher forces to resolve your problem. Please wait!</p>
+        <%= link("Pray", to: "/", method: :get) %>
+    </div>
+</div>

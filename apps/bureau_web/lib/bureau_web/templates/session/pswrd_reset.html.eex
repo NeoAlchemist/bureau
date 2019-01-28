@@ -1,0 +1,16 @@
+<div class="siimple-content" align="center">
+  <div class="siimple-form" style="max-width: 400px;">
+    <div class="siimple-form-title">Reset your password</div>
+    <%= form_for @conn, @action, [as: :reset, method: :post], fn f -> %>
+
+      <div class="siimple-form-field">
+        <%= label f, :email, class: "siimple-form-field-label siimple--float-left" %>
+        <%= email_input f, :email, class: "siimple-input  siimple-input--fluid", placeholder: "email" %>
+      </div>
+
+      <div class="siimple-form-field" >
+        <%= submit "Send link", class: "siimple-btn siimple-btn--primary", style: "width: 150px;" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<section class="siimple-grid blog-content">
+    <div class="siimple-grid-row">
+      <div class="siimple-grid-col siimple-grid-col--3">
+          <div class="siimple--pb-4">
+             <%= if not is_nil(@job.logo) do %>
+             <img src="<%= @job.logo %>" alt="<%= @job.company_name %>" style="max-width:300px;">
+             <% else %>
+             <img src=<%= "#{img_link(@conn)}/images/default.png" %> alt="<%= @conn.host %>" style="max-width:300px;">
+             <% end %>
+             <div class="siimple-card">
+              <div class="siimple-card-body">
+                <div class="siimple-card-title"><%= @job.company_name %></div>
+                <%= if @job.remote do %>
+                <span class="siimple-tag siimple-tag--primary siimple-tag--rounded">
+                    Remote
+                </span>
+                <% end %>
+                <%= if @job.urgent do %>
+                <span class="siimple-tag siimple-tag--primary siimple-tag--rounded">
+                    Urgent
+                </span>
+                <% end %>
+                <br/>
+                <div class="siimple-card-title"><%= "#{@job.country}, #{@job.location}" %></div>
+                <div class="siimple-card-subtitle"><%= if is_nil(@job.url), do: @job.email, else: @job.url %></div>
+              </div>
+            </div>
+          </div>
+      </div>  
+      <div class="siimple-grid-col siimple-grid-col--9">
+        <%= if @job.close do %>
+        <div class="siimple-tip siimple-tip--error">
+          Sorry this job offer was closed!
+        </div>
+        <% end %>
+            <div class="siimple-card">
+              <div>
+                <div class="siimple-card-title">About job</div>
+          
+                <div class="siimple-card-subtitle"><strong>Position: <%= @job.position %> </strong></div>
+                <p class="siimple-p"><%= @job.description %></p>
+                <div class="siimple-card-subtitle">Published <%= String.slice("#{@job.updated_at}", 0, 16) %></div>
+              </div>
+            </div>
+      </div>
+    </div>
+</section>
+

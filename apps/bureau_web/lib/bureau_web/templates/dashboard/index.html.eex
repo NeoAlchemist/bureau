@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <div class="row">
+    
+        <div class="col-md-4">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Users</h4>
+                    <p class="category">Statistics about users</p>
+                </div>
+                <div class="content">
+                <nav class="container-fluid">
+                    <h3 class="title pull-left">
+                        Verified: <%= @users.verified %>
+                    </h3>
+                    <h3 class="title pull-right">
+                        Today: <%= @users.today %>
+                    </h3>
+                </nav>
+                <hr>
+                <h3 class="title">Total: <%= @users.total %></h3>
+                </div>
+            </div>
+        </div>
+
+         <div class="col-md-4">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Jobs</h4>
+                    <p class="category">Statistics about job offers</p>
+                </div>
+                <div class="content">
+                <nav class="container-fluid">
+                    <h3 class="title pull-left">
+                        Verified: <%= @jobs.verified %>
+                    </h3>
+                    <h3 class="title pull-right">
+                        Today: <%= @jobs.today %>
+                    </h3>
+                </nav>
+                <hr>
+                <h3 class="title">Total: <%= @jobs.total %></h3>
+                </div>
+            </div>
+        </div>
+</div>

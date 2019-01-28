@@ -1,0 +1,71 @@
+<div class="siimple-content" align="center">
+ <div class="siimple-form" style="max-width: 400px;">
+<div class="siimple-form-title">Update your profile</div>
+    <%= form_for @changeset, @action, fn f -> %>
+
+      <div class="siimple-form-field">
+        <%= label f, "Alchemist name", class: "siimple-form-field-label siimple--float-left" %>
+        <%= text_input f, :username, class: "siimple-input siimple-input--fluid" %>
+        <%= error_tag f, :username %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, "Avatar url", class: "siimple-form-field-label siimple--float-left" %>
+        <%= url_input f, :avatar, class: "siimple-input siimple-input--fluid" %>
+        <%= error_tag f, :avatar %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, "Most frequently used spell", class: "siimple-form-field-label siimple--float-left" %>
+        <%= text_input f, :spell, placeholder: "iex -S mix phx.server", class: "siimple-input siimple-input--fluid" %>
+        <%= error_tag f, :spell %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, :github_url, class: "siimple-form-field-label siimple--float-left" %>
+        <%= url_input f, :github_url, class: "siimple-input siimple-input--fluid" %>
+        <%= error_tag f, :github_url %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, :twitter_url, class: "siimple-form-field-label siimple--float-left" %>
+        <%= url_input f, :twitter_url, class: "siimple-input siimple-input--fluid" %>
+        <%= error_tag f, :twitter_url %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, :linkedIn_url, class: "siimple-form-field-label siimple--float-left" %>
+        <%= url_input f, :linkedIn_url, class: "siimple-input siimple-input--fluid" %>
+        <%= error_tag f, :linkedIn_url %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, :about_me, class: "siimple-form-field-label siimple--float-left" %>
+        <%= textarea f, :about, class: "siimple-textarea siimple-textarea--fluid" %>
+        <%= error_tag f, :about %>
+      </div>
+
+      <div class="siimple-form-field siimple--display-inline-block">
+        <%= label f, "Open for hiring", class: "siimple-label siimple--display-inline-block" %>
+        <%= checkbox f, :open_hiring, class: "siimple-checkbox siimple--display-inline-block" %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, :password, class: "siimple-form-field-label siimple--float-left" %>
+        <%= password_input f, :password, class: "siimple-input siimple-input--fluid" %>
+        <%= error_tag f, :password %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, :new_password, class: "siimple-form-field-label siimple--float-left" %>
+        <%= password_input f, :new_password, class: "siimple-input siimple-input--fluid" %>
+        <%= error_tag f, :new_password %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= submit "Update", class: "siimple-btn siimple-btn--primary", style: "width: 150px;" %>
+      </div>
+    <% end %>
+    <%= link "Delete", to: Routes.user_path(@conn, :delete), method: :delete, data: [confirm: "Are you sure?"], class: "siimple-btn siimple-btn--red", style: "width: 120px;" %>
+  </div>
+</div>

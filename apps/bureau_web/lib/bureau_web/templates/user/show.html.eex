@@ -1,0 +1,36 @@
+<section class="siimple-grid blog-content">
+    <div class="siimple-grid-row">
+      <div class="siimple-grid-col siimple-grid-col--3">
+          <div class="siimple--pb-4">
+             <div class="siimple-content">
+                <%= if not is_nil(@user.avatar) do %>
+                    <img src="<%= @user.avatar %>" alt="<%= @user.username %>" style="max-width:300px;">
+                <% else %>
+                    <img src=<%= "#{img_link(@conn)}/images/user.png" %> alt="<%= @conn.host %>" style="max-width:300px;">
+                <% end %>
+                <div class="siimple-card-title"><%= @user.username %></div>
+                <%= if @user.open_hiring do %>
+                <span class="siimple-tag siimple-tag--primary siimple-tag--rounded">
+                    Open for hiring
+                </span>
+                <% end %>
+                <br/>
+                <div class="siimple-list" style="max-width:300px;margin-top:40px;">
+                    <div class="siimple-list-item"><a class="siimple-link" href="<%= @user.github_url %>"> Github</a></div>
+                    <div class="siimple-list-item"><a class="siimple-link" href="<%= @user.twitter_url %>"> Twitter</a></div>
+                    <div class="siimple-list-item"><a class="siimple-link" href="<%= @user.linkedIn_url %>"> LinkedIn</a></div>
+                </div>
+            </div>
+          </div>
+      </div>  
+      <div class="siimple-grid-col siimple-grid-col--9">
+        <div class="siimple-card" style="max-width:600px;">
+        <div class="siimple-card-body">
+            <div class="siimple-card-title">About Me</div>
+            <div class="siimple-card-subtitle"><%= @user.spell %></div>
+            <p><%= @user.about %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

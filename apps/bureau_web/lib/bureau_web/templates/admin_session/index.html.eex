@@ -1,0 +1,21 @@
+<div class="siimple-footer" align="center">
+  <div class="siimple-form" style="max-width: 400px;">
+    <div class="siimple-form-title">Dashboard</div>
+    <%= form_for @conn, @action, fn f -> %>
+
+      <div class="siimple-form-field">
+        <%= label f, :username, class: "siimple-form-field-label siimple--float-left" %>
+        <%= text_input f, :username, class: "siimple-input  siimple-input--fluid", placeholder: "username" %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, :password, class: "siimple-form-field-label siimple--float-left" %>
+        <%= password_input f, :password, class: "siimple-input  siimple-input--fluid", placeholder: "password" %>
+      </div>
+
+      <div class="siimple-form-field siimple--mx-auto">
+        <%= submit "Login", class: "siimple-btn siimple-btn--primary", style: "width: 150px;" %>
+      </div>
+    <% end %>
+  </div>
+</div>

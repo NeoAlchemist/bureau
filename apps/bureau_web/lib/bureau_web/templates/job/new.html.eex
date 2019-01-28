@@ -1,0 +1,71 @@
+<div class="siimple-content" align="center">
+  <div class="siimple-form" style="max-width: 400px;">
+      <div class="siimple-form-title">Create new job offer</div>
+      <%= form_for @changeset, @action, fn f -> %>
+
+      <div class="siimple-form-field">
+        <%= label f, :company_name, class: "siimple-form-field-label siimple--float-left" %>
+        <%= text_input f, :company_name, class: "siimple-input siimple-input--fluid" %>
+        <%= error_tag f, :company_name %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, :email, class: "siimple-form-field-label siimple--float-left" %>
+        <%= email_input f, :email, class: "siimple-input siimple-input--fluid" %>
+        <%= error_tag f, :email %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, "Logo url", class: "siimple-form-field-label siimple--float-left" %>
+        <%= url_input f, :logo, class: "siimple-input siimple-input--fluid" %>
+        <%= error_tag f, :logo %>
+      </div>
+
+    <div class="siimple-form-title siimple--mt-5">About job</div>
+
+      <div class="siimple-form-field">
+        <%= label f, "Job role", class: "siimple-form-field-label siimple--float-left" %>
+        <%= text_input f, :position, class: "siimple-input siimple-input--fluid" %>
+        <%= error_tag f, :position %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, :country, class: "siimple-form-field-label siimple--float-left" %>
+        <%= select f, :country, ["","Afghanistan","Albania","Algeria","Andorra","Angola","Antigua & Deps","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Central African Rep","Chad","Chile","China","Colombia","Comoros","Congo","Congo (Democratic Rep)","Costa Rica","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","East Timor","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland (Republic)","Israel","Italy","Ivory Coast","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Korea North","Korea South","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar, (Burma)","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palau","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russian Federation","Rwanda","St Kitts & Nevis","St Lucia","Saint Vincent & the Grenadines","Samoa","San Marino","Sao Tome & Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"], class: "siimple-select siimple-select--fluid" %>
+        <%= error_tag f, :country %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, :location, class: "siimple-form-field-label siimple--float-left" %>
+        <%= text_input f, :location, class: "siimple-input siimple-input--fluid" %>
+        <%= error_tag f, :location %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, "URL of job position", class: "siimple-form-field-label siimple--float-left" %>
+        <%= url_input f, :url, class: "siimple-input siimple-input--fluid" %>
+        <%= error_tag f, :url %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, :description, class: "siimple-form-field-label siimple--float-left" %>
+        <%= textarea f, :description, class: "siimple-textarea siimple-textarea--fluid" %>
+        <%= error_tag f, :description %>
+      </div>
+
+      <div class="siimple-form-field siimple--display-inline-block">
+        <%= label f, :remote, class: "siimple-label siimple--display-inline-block" %>
+        <%= checkbox f, :remote, class: "siimple-checkbox siimple--display-inline-block" %>
+      </div>
+
+      <div class="siimple-form-field siimple--display-inline-block">
+        <%= label f, :urgent, class: "siimple-label siimple--display-inline-block" %>
+        <%= checkbox f, :urgent, class: "siimple-checkbox siimple--display-inline-block" %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= submit "Post", class: "siimple-btn siimple-btn--primary", style: "width: 150px;" %>
+      </div>
+    <% end %>
+  </div>
+</div>

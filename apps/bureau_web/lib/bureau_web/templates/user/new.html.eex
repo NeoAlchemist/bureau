@@ -1,0 +1,35 @@
+<div class="siimple-content" align="center">
+  <div class="siimple-form" style="max-width: 400px;">
+    <div class="siimple-form-title">Become an Alchemist!</div>
+    <%= form_for @changeset, @action, fn f -> %>
+
+      <div class="siimple-form-field">
+        <%= label f, "Alchemist name", class: "siimple-form-field-label siimple--float-left" %>
+        <%= text_input f, :username, class: "siimple-input siimple-input--fluid", placeholder: "username" %>
+        <%= error_tag f, :username %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, :email, class: "siimple-form-field-label siimple--float-left" %>
+        <%= email_input f, :email, class: "siimple-input siimple-input--fluid", placeholder: "email" %>
+        <%= error_tag f, :email %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, :password, class: "siimple-form-field-label siimple--float-left" %>
+        <%= password_input f, :password, class: "siimple-input siimple-input--fluid" %>
+        <%= error_tag f, :password %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= label f, :password_confirmation, class: "siimple-form-field-label siimple--float-left" %>
+        <%= password_input f, :password_confirmation, class: "siimple-input siimple-input--fluid" %>
+        <%= error_tag f, :password_confirmation %>
+      </div>
+
+      <div class="siimple-form-field">
+        <%= submit "Join now!", class: "siimple-btn siimple-btn--primary", style: "width: 150px;" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card card-user">
+                    <div class="header">
+                        <h4 class="title">Edit Profile</h4>
+                    </div>
+                    <div class="image">
+                    </div>
+                    <%= if not is_nil(@user.avatar) do %>
+                        <div class="author">
+                            <a href="<%= @user.avatar %>">
+                            <img class="avatar border-gray" src="<%= @user.avatar %>"/>
+                            </a>
+                        </div>
+                    <% end %>
+                    <div class="content">
+                        <%= form_for @conn, Routes.admin_user_path(@conn, :update, @user.id), [as: :user, method: :put], fn f -> %> 
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>Avatar</label>
+                                        <input type="text" name="user[avatar]" class="form-control" placeholder="default" value="<%= @user.avatar %>">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input type="text" name="user[username]"  class="form-control" placeholder="Username" value="<%= @user.username %>">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" name="user[email]" class="form-control" placeholder="Email" value="<%= @user.email %>">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Registred At</label>
+                                        <br>
+                                        <span><%= @user.inserted_at %></span>
+                                    </div>
+                                </div>
+                                 <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Open for hiring</label>
+                                         <%= checkbox f, :open_hiring, value: @user.open_hiring, class: "form-control" %>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Verified</label>
+                                        <%= checkbox f, :verified, value: @user.verified, class: "form-control" %>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>About Me</label>
+                                        <%= if not is_nil(@user.about) do %>
+                                            <textarea rows="5" name="user[about]" class="form-control" placeholder="User description here"><%= @user.about %></textarea>
+                                        <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <%= link "Delete", to: Routes.admin_user_path(@conn, :delete, @user.id), method: :delete, data: [confirm: "Are you sure?"], class: "form-control btn btn-danger btn-fill" %>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <%= submit "Update", class: "form-control btn btn-info btn-fill" %>
+                                </div>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/siimple@3.2.1/dist/siimple.min.css">
+    <link rel="stylesheet" href='<%= Routes.static_path(@conn, "/css/app.css") %>'/>
+    <title>Bureau</title>
+  </head>
+  <body>
+    <div class="siimple-navbar siimple-navbar--extra-large siimple-navbar--dark">
+        <%= link("Bureau", class: "siimple-navbar-title", to: "/", method: :get) %>
+        
+        <div class="siimple-navbar-item"><%= get_name(@conn) %></div>
+
+        <div class="siimple--float-right">
+        <%= link("Users", class: "siimple-navbar-item", to: "/alchemists", method: :get) %>
+        <%= link("Job Offers", class: "siimple-navbar-item", to: "/jobs", method: :get) %>
+            <%= case logged? @conn do %>
+              <%= "user" -> %>
+                <%= link("Profile", class: "siimple-navbar-item", to: "/alchemists/enchant", method: :get) %>
+                <%= link("Sign out", class: "siimple-navbar-item", to: "/incanto", method: :delete)%>
+              <% "employer" -> %>
+                <%= link("Close Offer", class: "siimple-navbar-item", to: "/jobs/close", method: :delete) %>
+            <% _ -> %>
+              <%= link("Create Job Offer", class: "siimple-navbar-item", to: "/jobs/new", method: :get) %>
+              <%= link("Sign In", class: "siimple-navbar-item", to: "/incanto", method: :get) %>
+              <%= link("Sign Up", class: "siimple-navbar-item", to: "/alchemists/join", method: :get) %>
+            <% end %>
+        </div>
+    </div>
+    <div class="content siimple-content siimple-content--extra-large">
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <%= render @view_module, @view_template, assigns %>
+    </div>
+    <!-- Footer --> 
+    <div class="footer siimple-footer siimple-footer--light">
+        <div class="siimple-grid-row">
+            <div class="siimple-grid-col siimple-grid-col--6">
+                <div class="siimple-footer-title">Powered by Elixir & Phoenix</div>
+                <div class="siimple-footer-subtitle"><a href="https://elixir-lang.org/
+" class="siimple-footer-link">source code</a>   
+                </div>
+            </div>
+            <div class="siimple-grid-col siimple-grid-col--3">
+                <div class="siimple-footer-group">Elixir language</div>
+                            <a href="https://elixir-lang.org/
+
+" class="siimple-footer-link">
+                Elixir-lang
+                <div class="siimple-footer-link-description">
+                    Elixir is a functional, concurrent, general-purpose programming language
+                </div>
+            </a>
+
+            </div>
+            <div class="siimple-grid-col siimple-grid-col--3">
+                <div class="siimple-footer-group">Phoenix Framework</div>
+                            <a href="https://phoenixframework.org/" class="siimple-footer-link">
+                Phoenix
+                <div class="siimple-footer-link-description">
+                    A productive web framework that does not compromise speed and maintainability.
+                </div>
+            </a>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src='<%= Routes.static_path(@conn, "/js/app.js") %>'></script>
+  </body>
+</html>
