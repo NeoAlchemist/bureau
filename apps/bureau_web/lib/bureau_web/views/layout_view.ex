@@ -8,7 +8,10 @@ defmodule BureauWeb.LayoutView do
   def get_name(conn) do 
     conn
     |> Plug.Conn.get_session(:account)
-    |> Map.get("name")
+    |> case do
+      map when is_map(map) -> Map.get(map, "name")
+      _ -> ""
+    end
   end
 
   def img_link(conn) do

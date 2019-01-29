@@ -47,16 +47,17 @@ defmodule BureauWeb.Router do
     resources "/alchemists", UserController, only: [:index, :create]
 
     scope "/alchemists" do
-      pipe_through :user
+      pipe_through [:user]
   
       get "/enchant", UserController, :enchant
       put "/enchant", UserController, :update
       delete "/retirement", UserController, :delete
   
-      get "/:username", UserController, :show
       # logout
       delete "/logout", UserController, :logout
     end
+
+    get "/alchemists/:username", UserController, :show
 
     # job offers
     get "/jobs/authorize", JobController, :authorize
@@ -64,7 +65,7 @@ defmodule BureauWeb.Router do
 
     # job owners area
     scope "/jobs" do
-      pipe_through :employer
+      pipe_through [:employer]
   
       delete "/close", JobController, :close
     end
@@ -73,7 +74,7 @@ defmodule BureauWeb.Router do
     resources "/admin/login", AdminSessionController, only: [:index, :create]
     
     scope "/admin" do
-      pipe_through :admin
+      pipe_through [:admin]
   
       get "/dashboard", DashboardController, :index
       resources "/users", AdminUserController, only: [:index, :show, :update, :delete]

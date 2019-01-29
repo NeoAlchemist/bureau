@@ -77,7 +77,6 @@ defmodule BureauWeb.JobController do
          %JobOffer{close: false} = job <- Offer.read(id),
          {:ok, new_job} <- Offer.update(job, %{verified: true}) do
       new_job
-      |> IO.inspect()
       |> BureauWeb.Authentication.authorize(conn)
       |> put_flash(:info, "Welcome #{job.company_name}")
       |> redirect(to: Routes.page_path(conn, :index, []))
