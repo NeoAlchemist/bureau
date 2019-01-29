@@ -20,7 +20,7 @@
             <%= case logged? @conn do %>
               <%= "user" -> %>
                 <%= link("Profile", class: "siimple-navbar-item", to: "/alchemists/enchant", method: :get) %>
-                <%= link("Sign out", class: "siimple-navbar-item", to: "/incanto", method: :delete)%>
+                <%= link("Sign out", class: "siimple-navbar-item", to: "/alchemists/logout", method: :delete)%>
               <% "employer" -> %>
                 <%= link("Close Offer", class: "siimple-navbar-item", to: "/jobs/close", method: :delete) %>
             <% _ -> %>

@@ -100,7 +100,7 @@ defmodule BureauWeb.UserController do
   def authorize(conn, _) do
     conn
     |> put_status(:temporary_redirect)
-    |> redirect(to: Routes.session_path(conn, :index, []))
+    |> redirect(to: Routes.page_path(conn, :not_found, []))
   end
 
   def password(conn, %{"token" => token}) do
@@ -123,7 +123,7 @@ defmodule BureauWeb.UserController do
   def password(conn, _) do
     conn
     |> put_status(:temporary_redirect)
-    |> redirect(to: Routes.session_path(conn, :index, []))
+    |> redirect(to: Routes.page_path(conn, :not_found, []))
   end
 
   def update_password(conn, %{"update" => params}) do
@@ -147,6 +147,15 @@ defmodule BureauWeb.UserController do
     conn
     |> put_flash(:info, "Account deleted")
     |> Guardian.Plug.sign_out(BureauWeb.Guardian, [])
+    |> clear_session()
+    |> redirect(to: Routes.session_path(conn, :index, []))
+  end
+
+  def logout(conn, _params) do
+    conn
+    |> Guardian.Plug.sign_out(BureauWeb.Guardian, [])
+    |> clear_session()
+    |> put_flash(:info, "Signed out successfully")
     |> redirect(to: Routes.session_path(conn, :index, []))
   end
 end

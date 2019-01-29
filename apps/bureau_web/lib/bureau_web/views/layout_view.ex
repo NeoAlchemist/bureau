@@ -3,13 +3,13 @@ defmodule BureauWeb.LayoutView do
 
   # All functions defined here are available insiede template, specialy usefull for pattern matching!
 
-  def logged?(%{private: %{:guardian_default_claims => %{"typ" => typ}}}) when not is_nil(typ),
-    do: typ
-
-  def logged?(_), do: false
-
-  def get_name(%{private: %{:guardian_default_resource => %{"name" => name}}}), do: name
-  def get_name(_), do: ""
+  def logged?(conn), do: Plug.Conn.get_session(conn, :typ)
+  
+  def get_name(conn) do 
+    conn
+    |> Plug.Conn.get_session(:account)
+    |> Map.get("name")
+  end
 
   def img_link(conn) do
     Mix.env()

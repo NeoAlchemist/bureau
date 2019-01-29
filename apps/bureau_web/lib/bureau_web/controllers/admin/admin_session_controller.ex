@@ -27,6 +27,7 @@ defmodule BureauWeb.AdminSessionController do
   def delete(conn, _params) do
     conn
     |> Guardian.Plug.sign_out(BureauWeb.Guardian, [])
+    |> clear_session()
     |> put_flash(:info, "Signed out successfully")
     |> redirect(to: Routes.admin_session_path(conn, :index, []))
   end

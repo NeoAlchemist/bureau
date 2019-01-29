@@ -20,9 +20,9 @@ defmodule BureauWeb.Router do
 
   pipeline :admin do
     plug BureauWeb.Admin.Pipeline
+    plug :put_layout, {BureauWeb.LayoutAdminView, :admin}
     # Apply admin layout at the router level
     # https://cultivatehq.com/posts/how-to-set-different-layouts-in-phoenix/
-    plug :put_layout, {BureauWeb.LayoutAdminView, :admin}
   end
 
   scope "/", BureauWeb do
@@ -36,9 +36,7 @@ defmodule BureauWeb.Router do
 
     # login
     resources "/incanto", SessionController, only: [:index, :create]
-    # logout
-    delete "/incanto", SessionController, :delete
-
+  
     # users
     get "/alchemists/authorize", UserController, :authorize
     get "/alchemists/join", UserController, :new
@@ -48,39 +46,40 @@ defmodule BureauWeb.Router do
 
     resources "/alchemists", UserController, only: [:index, :create]
 
+    scope "/alchemists" do
+      pipe_through :user
+  
+      get "/enchant", UserController, :enchant
+      put "/enchant", UserController, :update
+      delete "/retirement", UserController, :delete
+  
+      get "/:username", UserController, :show
+      # logout
+      delete "/logout", UserController, :logout
+    end
+
     # job offers
     get "/jobs/authorize", JobController, :authorize
     resources "/jobs", JobController, only: [:index, :show, :new, :create]
 
+    # job owners area
+    scope "/jobs" do
+      pipe_through :employer
+  
+      delete "/close", JobController, :close
+    end
+  
     # admin area
     resources "/admin/login", AdminSessionController, only: [:index, :create]
-
+    
     scope "/admin" do
-      pipe_through [:admin]
-
+      pipe_through :admin
+  
       get "/dashboard", DashboardController, :index
       resources "/users", AdminUserController, only: [:index, :show, :update, :delete]
       resources "/jobs", AdminJobController, only: [:index, :show, :update, :delete]
-
+  
       delete "/logout", AdminSessionController, :delete
-    end
-
-    # users area
-    scope "/alchemists" do
-      pipe_through [:user]
-
-      get "/enchant", UserController, :enchant
-      put "/enchant", UserController, :update
-      delete "/retirement", UserController, :delete
-
-      get "/:username", UserController, :show
-    end
-
-    # job owners area
-    scope "/jobs" do
-      pipe_through [:employer]
-
-      delete "/close", JobController, :close
     end
 
     get "/*path", PageController, :not_found

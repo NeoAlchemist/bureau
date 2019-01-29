@@ -93,8 +93,9 @@ defmodule BureauWeb.JobController do
     Offer.update(id, %{close: true})
 
     conn
-    |> put_flash(:info, "Thank you, job offer closed!")
     |> Guardian.Plug.sign_out(BureauWeb.Guardian, [])
+    |> clear_session()
+    |> put_flash(:info, "Thank you, job offer closed!")
     |> redirect(to: Routes.page_path(conn, :index, []))
   end
 end
