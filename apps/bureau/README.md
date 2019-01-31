@@ -1,3 +1,3 @@
 # Bureau
 
-**TODO: Add description**
+Main application dealing with users and job offers.
