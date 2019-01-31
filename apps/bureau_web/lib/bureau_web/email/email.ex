@@ -1,5 +1,8 @@
 defmodule BureauWeb.Email do
   use Bamboo.Phoenix, view: BureauWeb.EmailView
+  @moduledoc """
+  Just some useful function to compose emails.
+  """
 
   @domain Application.get_env(:bureau_web, BureauWeb.Mailer)[:domain]
 

@@ -3,4 +3,4 @@ Welcome to <%= site_url() %>
 We're ready to activate your account. All we need to do is
 make sure this is your email address.
 
-<%= URI.encode(@email.link) %>
+<%= @email.link %>

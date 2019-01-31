@@ -1,13 +1,18 @@
 defmodule CRUD do
+  @moduledoc """
+  Implementation of CRUD functions. 
+  In order to use them just add:
+  `use CRUD, schema: SomeEctoSchema`
+  """
   @spec __using__(list({atom, Ecto.Schema.t()})) :: any
   defmacro __using__(schema: schema) do
     quote do
-      @doc """
-      Check if schema is a valide module and then inject expression, or raise un error
-      """
       alias Bureau.Repo
       alias unquote(schema)
 
+      @doc """
+      Get your data from DB by passing ID as integer or list of keys
+      """
       @spec read(integer | Keyword.t()) :: Ecto.Schema.t() | nil
       def read(id) when is_integer(id), do: Repo.get(unquote(schema), id)
 
@@ -24,6 +29,11 @@ defmodule CRUD do
         |> Repo.insert()
       end
 
+      @doc """
+      Update a struct defined via Ecto.Schema or a changeset.
+      Give ID as integer or Schema, and attributes for update.
+      It returns {:ok, struct} if the struct has been successfully update or {:error, changeset} if there was a validation or a known constraint error.
+      """
       @spec update(integer | Ecto.Schema.t() | Ecto.Changeset.t(), map | Keyword.t()) ::
               {:ok, Ecto.Schema.t()} | {:error, Ecto.Changeset.t()}
       def update(id, attrs) when is_integer(id) do
@@ -40,6 +50,9 @@ defmodule CRUD do
         |> Repo.update()
       end
 
+      @doc """
+      Delete data by passing ID or Schema
+      """
       @spec delete(integer | Ecto.Schema.t() | Ecto.Changeset.t()) ::
               {:ok, Ecto.Schema.t()} | {:error, Ecto.Changeset.t()}
       def delete(id) when is_integer(id) do

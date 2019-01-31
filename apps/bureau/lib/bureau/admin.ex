@@ -1,6 +1,6 @@
 defmodule Bureau.Admin do
   @moduledoc """
-  This module keep all logic e state of admin dashboard
+  This module keep all logic and admin account for dashboard
   """
   defmodule Account do
     defstruct username: nil,

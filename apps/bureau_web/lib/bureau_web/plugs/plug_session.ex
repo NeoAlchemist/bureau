@@ -3,16 +3,15 @@ defmodule BureauWeb.Plug.Session do
   import Plug.Conn
 
   @moduledoc """
-  This plugin need to load data from guardian token if there isn't already loaded into assigns.
-  Having different token types, if you don't specify to guardian plugin wich claims typ to load
-  it will load defualt typ => access, but as I need to load 2 different type this plugin load 
-  what ever typ there is inside token.
+  This plugin need to load data from guardian token if there isn't already loaded into session.
   """
 
   def init(opts), do: opts
 
+  #if there is already account data inside session then skip
   def call(conn = %{private: %{plug_session: %{"account" => _acc}}}, _opts), do: conn
 
+  #put inside session guardian_resources from session token
   def call(conn = %{private: %{:plug_session => %{"guardian_default_token" => token}}}, _opts)
       when not is_nil(token) do
     with {:ok, claims} <- BureauWeb.Guardian.decode_and_verify(token) do
