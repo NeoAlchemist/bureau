@@ -1,4 +1,4 @@
-#Bureau: Elixir Jobs example
+# Bureau: Elixir Jobs example
 
 This is just an example of phoenix umbrella project. 
 The contex of this project is just build simple web site for posting Elixir jobs, nothing to complicate.
@@ -9,7 +9,7 @@ See other examples:
 [Elixir_jobs](https://github.com/odarriba/elixir_jobs)
 [Elixir_career](https://github.com/manusajith/elixirjobs)
 
-#What it has
+# What it has
 
 * Admin Dashboard 
 * Users and Job Offers Managment
@@ -23,7 +23,7 @@ See other examples:
 3. Phoenix 1.4
 4. PostgreSQl
 
-#Set up project
+# Set up project
 
 ```
 $ cd bureau_umbrella
